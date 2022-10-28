@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="market.css">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/oc.svg" />
+    <title>News</title>
+  </head>
+  <body onload="news()">
+    <h1><b><i>M A R K E T &emsp; N E W S</i></b></h1>
+    <div>
+        <ul id="nws">
+        <a></a>
+        </ul>
+    </div>
+
+    <script>
+        const market = document.querySelector('.nws');
+const news = () =>{
+  
+  const url=`https://newsapi.org/v2/everything?q=Cryptocurrency&from=2022-07-10&sortBy=publishedAt&apiKey=5e09ac67a24f47769de9961fb2a215ee`
+  fetch(url).then((res)=>{
+    return res.json()
+  }).then((data)=>{
+    console.log(data)
+    data.articles.forEach(article=>{
+      let li=document.createElement('li');
+      let a=document.createElement('a');
+      a.setAttribute('href',article.url);
+      a.setAttribute('target','_blank');
+      a.textContent=article.title;
+      li.appendChild(a);
+      nws.appendChild(li);
+      
+    })
+  })
+};
+    </script>
+  </body>
+</html>
